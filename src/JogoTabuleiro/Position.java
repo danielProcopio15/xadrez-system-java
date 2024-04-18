@@ -16,6 +16,12 @@ public class Position {
     public int getcoluna() {
         return coluna;
     }
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
+    }
 
     public String toString() {
         return linha + "," + coluna;
