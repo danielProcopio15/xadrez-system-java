@@ -14,5 +14,30 @@ public class Board {
 
 
     }
+
+    public int getLinhas(){
+        return linhas;
+
+    }
+
+    public void setLinhas(int linhas){
+        this.linhas = linhas;
+    }
+
+    public int getColunas(){
+        return colunas;
+    }
+
+    public void setColunas(int colunas){
+        this.colunas = colunas;
+    }
+
+    public Piece piece(int linha, int coluna){
+        return pieces[linha][coluna];
+    }
+
+    public Piece piece(Position position){
+        return pieces[position.getLinha()][position.getcoluna()];
+    }
 }
 
