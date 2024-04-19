@@ -1,4 +1,11 @@
 package JogoTabuleiro;
+import JogoTabuleiro.Position;
+
+import JogoTabuleiro.Piece;
+import xadrez.pieces.Rei;
+import xadrez.pieces.Torre;
+import JogoTabuleiro.BoardException;
+
 
 public class Board {
 
@@ -7,10 +14,13 @@ public class Board {
     private Piece[][] pieces;//isso aqui indica que teremos dois vetores a serem preenchidos
 
 
-    public Board(int linas, int colunas){
-        this.linhas = linas;
+    public Board(int linhas, int colunas){
+        if(linhas < 1 || colunas < 1){
+            throw new BoardException("para criar, precisa ao menos de uma linha e uma coluna" );
+        }
+        this.linhas = linhas;
         this.colunas = colunas;
-        this.pieces = new Piece[linas][colunas];//isto é a cordenada
+        pieces = new Piece[linhas][colunas];//isto é a cordenada
 
 
     }
@@ -20,29 +30,41 @@ public class Board {
 
     }
 
-    public void setLinhas(int linhas){
-        this.linhas = linhas;
-    }
 
     public int getColunas(){
         return colunas;
     }
 
-    public void setColunas(int colunas){
-        this.colunas = colunas;
-    }
 
     public Piece piece(int linha, int coluna){
         return pieces[linha][coluna];
     }
 
-    public Piece piece(Position position){
-        return pieces[position.getLinha()][position.getcoluna()];
-    }
 
     public void placePiece(Piece piece, Position position){
+       if(thereIsAPiece(position)){
+          throw new BoardException("aqui já tem uma peça");
+        }
         pieces[position.getLinha()][position.getcoluna()] = piece;
         piece.position = position;
     }
+
+    public Boolean positionExists(int linha, int coluna){
+        return linha >=0 && linha < linhas && coluna >=0 && coluna < colunas;
+    }
+    public Boolean positionExists(Position position){
+        return positionExists(position.getLinha(), position.getcoluna());
+    }
+
+
+
+    public boolean thereIsAPiece(Position position){
+        if(!positionExists(position)){
+            throw new BoardException("Posição fora do tabuleiro");}
+        return pieces[position.getLinha()][position.getcoluna()] != null;
+
+    }
+
+
 }
 

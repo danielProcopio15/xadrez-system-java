@@ -14,7 +14,7 @@ public class ChessPiece extends Piece {
     }
 
     public Color getColor() {
-        return color;// acor apenas pode ser acessada
+        return color;// a cor apenas pode ser acessada
 
 
     }
