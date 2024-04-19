@@ -1,6 +1,6 @@
 package xadrez;
 
-public enum color {
+public enum Color {
     BLACK,
     WHITE;
 }
